@@ -18,6 +18,8 @@ It gives a convenient way to test and run Kotlin codes without needing to open a
 
 ![Profile Tab](<images/Profile Tab.png>)
 
+![All other features](<images/All other features.jpeg>)
+
 
 ## Features
 
