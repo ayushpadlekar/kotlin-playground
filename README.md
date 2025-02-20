@@ -14,9 +14,9 @@ It gives a convenient way to test and run Kotlin codes without needing to open a
 
 * ### Main Screen (Empty Compiler Tab selected by default)
 
-![Main Screen (Compiler Tab)](<images/Main Screen.png>)
+![Main Screen (Compiler Tab)](<images/Main Screen.jpeg>)
 
-![Profile Tab](<images/Profile Tab.png>)
+![Profile Tab](<images/Profile Tab.jpeg>)
 
 ![All other features](<images/All other features.jpeg>)
 
