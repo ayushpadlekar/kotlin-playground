@@ -1,8 +1,8 @@
 <div align="left">
     <img src="images/KotlinPlaygroundd.png" alt="App Logo" height="100">
-</div> </br>
+</div> 
 
-# Kotlin Playground Electron App
+# Kotlin Playground - Desktop App
 
 This is a desktop app built with Electron, which can be used to practice coding in Kotlin Language. The app is best suited for Android developers.
 
@@ -10,6 +10,13 @@ The app uses Kotlin Compiler Playground from SoloLearn (www.sololearn.com/en/com
 
 It gives a convenient way to test and run Kotlin codes without needing to open a web browser or use any heavy IDE for practising code.
 
+## Screenshots
+
+* ### Main Screen (Empty Compiler Tab selected by default)
+
+![Main Screen (Compiler Tab)](<images/Main Screen.png>)
+
+![Profile Tab](<images/Profile Tab.png>)
 
 
 ## Features
