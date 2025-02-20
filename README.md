@@ -16,7 +16,11 @@ It gives a convenient way to test and run Kotlin codes without needing to open a
 
 ![Main Screen (Compiler Tab)](<images/Main Screen.jpeg>)
 
+* ### Profile Tab (To open saved kotlin programs)
+
 ![Profile Tab](<images/Profile Tab.jpeg>)
+
+* ### Other features like Add, Rename or Delete tabs
 
 ![All other features](<images/All other features.jpeg>)
 
