@@ -1,3 +1,7 @@
+<div align="left">
+    <img src="images/KotlinPlaygroundd.png" alt="App Logo" height="100">
+</div> </br>
+
 # Kotlin Playground Electron App
 
 This is a desktop app built with Electron, which can be used to practice coding in Kotlin Language. The app is best suited for Android developers.
@@ -5,6 +9,8 @@ This is a desktop app built with Electron, which can be used to practice coding 
 The app uses Kotlin Compiler Playground from SoloLearn (www.sololearn.com/en/compiler-playground/kotlin). 
 
 It gives a convenient way to test and run Kotlin codes without needing to open a web browser or use any heavy IDE for practising code.
+
+
 
 ## Features
 
@@ -21,12 +27,23 @@ It gives a convenient way to test and run Kotlin codes without needing to open a
 *   **HTML, CSS, JavaScript:** Used for the user interface and application logic.
 *   **SoloLearn Kotlin Playground:** The web-based Kotlin execution environment integrated into the app.
 
+## How to Use
+
+1.  Launch the application.
+2.  The application will open with two default tabs: "Compiler" and "Profile".
+3.  The 'Compiler' tab has default kotlin editor opened and the 'Profile' tab contains our saved kotlin program codes.
+4.  Use the Kotlin Playground within each tab as you normally would on the SoloLearn website.
+7.  Double-click on a tab name to rename it.
+8.  Click the "x" button on a tab to close it.
+9.  Use Ctrl+ +/-/0 to zoom in, out, and reset the zoom level.
+
+
 ## Installation
 
 1.  **Clone the Repository:**
 
     ```bash
-    git clone [https://github.com/ayushpadlekar/kotlin-playground.git](https://github.com/ayushpadlekar/kotlin-playground.git)
+    git clone https://github.com/ayushpadlekar/kotlin-playground.git
     ```
 
 2.  **Navigate to the Project Directory:**
@@ -46,16 +63,6 @@ It gives a convenient way to test and run Kotlin codes without needing to open a
     ```bash
     npm start
     ```
-
-## How to Use
-
-1.  Launch the application.
-2.  The application will open with two default tabs: "Compiler" and "Profile".
-3.  The 'Compiler' tab has default kotlin editor opened and the 'Profile' tab contains our saved kotlin program codes.
-4.  Use the Kotlin Playground within each tab as you normally would on the SoloLearn website.
-7.  Double-click on a tab name to rename it.
-8.  Click the "x" button on a tab to close it.
-9.  Use Ctrl+ +/-/0 to zoom in, out, and reset the zoom level.
 
 
 ## Contributing
