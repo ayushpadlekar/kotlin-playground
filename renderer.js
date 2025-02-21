@@ -309,14 +309,43 @@ if (window.api) {
 // Listen for the "show-shortcuts-dialog" message from the main process
 if (window.api) {
   window.api.handle('show-shortcuts-dialog', () => {
-      return () => {
-          const dialog = document.getElementById('shortcuts-dialog');
-          dialog.style.display = 'block';
+    return () => {
+      const dialog = document.getElementById('shortcuts-dialog');
+      const overlay = document.getElementById('overlay');
 
-          const closeButton = document.getElementById('close-shortcuts');
-          closeButton.addEventListener('click', () => {
-              dialog.style.display = 'none';
-          });
-      };
+      if (dialog.classList.contains('fade-in')) {
+        dialog.classList.remove('fade-in');
+        dialog.classList.add('fade-out');
+        overlay.style.display = 'none';
+        setTimeout(() => {
+          dialog.style.display = 'none';
+        }, 500);
+      } else {
+        dialog.style.display = 'block';
+        overlay.style.display = 'block';
+        dialog.classList.remove('fade-out');
+        dialog.classList.add('fade-in');
+      }
+
+      const closeButton = document.getElementById('close-shortcuts');
+      closeButton.addEventListener('click', () => {
+        dialog.classList.remove('fade-in');
+        dialog.classList.add('fade-out');
+        overlay.style.display = 'none';
+        setTimeout(() => {
+          dialog.style.display = 'none';
+        }, 500);
+      });
+
+      // Close dialog when clicking outside of it
+      overlay.addEventListener('click', () => {
+        dialog.classList.remove('fade-in');
+        dialog.classList.add('fade-out');
+        overlay.style.display = 'none';
+        setTimeout(() => {
+          dialog.style.display = 'none';
+        }, 500);
+      });
+    };
   });
 }
