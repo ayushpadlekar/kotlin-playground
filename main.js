@@ -108,7 +108,7 @@ const createWindow = () => {
       ],
     },
     {
-      label: 'Reload',
+      label: '⟳ Reload',
       click: () => {
         win.webContents.send('reload-active-tab'); // Send message to renderer
       },
@@ -121,16 +121,27 @@ const createWindow = () => {
       },
     },
     {
-      label: 'Forward >',
+      label: 'Next >',
       click: () => {
         win.webContents.send('navigate', 'forward');
       },
     },
+    {
+      label: 'Keyboard Shortcuts ?',
+      click: () => {
+        win.webContents.send('show-shortcuts-dialog');
+      },
+    },
   ];
-
   const menu = Menu.buildFromTemplate(template);
   Menu.setApplicationMenu(menu);
 
+
+
+  // Register global shortcuts for reload // Ctrl+R
+  globalShortcut.register('Ctrl+R', () => {
+    win.webContents.send('reload-active-tab');
+  });
 
 
   // Register global shortcuts for navigation // Main ALT

@@ -3,10 +3,29 @@ function updateTabLists() {
   tabButtons = document.querySelectorAll('.tab-button');
   webviewContainers = document.querySelectorAll('.webview-container');
 
+  const tabReloadCounts = {}; // Object to store reload counts for each tab
+
   // Reattach event listeners to all tab buttons
   tabButtons.forEach((button) => {
-    button.addEventListener('click', () => {
+
+    let reloading = false; // Add a flag to track reloading state
+
+    // Remove existing click listener to prevent duplicates
+    button.removeEventListener('click', button.clickHandler); // Remove if already attached
+
+    button.clickHandler = () => { // Store the function for removal
+
+      if (reloading) {
+        console.log("Reload already in progress, ignoring click.");
+        return; // Exit if already reloading
+      }
+
       const tabId = button.dataset.tab;
+
+      // Initialize count if not already present
+      if (!tabReloadCounts[tabId]) {
+        tabReloadCounts[tabId] = 0;
+      }
 
       // Deactivate all tabs and webviews
       tabButtons.forEach((btn) => btn.classList.remove('active'));
@@ -17,26 +36,56 @@ function updateTabLists() {
       const activeContainer = document.getElementById(tabId);
       activeContainer.classList.add('active');
 
-      // Reload the webview of the activated tab
-      const activeWebview = activeContainer.querySelector('webview');
-      if (activeWebview) {
-        const tryReload = () => {
-          if (typeof activeWebview.reload === 'function') {
-            console.log(`Reloading tab: ${tabId}`);
-            activeWebview.reload();
-          } else {
-            console.log(`Webview reload not ready: ${tabId}`);
-            activeWebview.addEventListener('dom-ready', () => {
-              console.log(`Reloading tab (dom-ready): ${tabId}`);
-              activeWebview.reload();
-            }, { once: true });
-          }
-        };
+      // Check if it's the Profile tab before reloading
+      if (tabId !== 'profile') { // Or if (button.dataset.tab !== 'profile')
 
-        // Add a small delay to allow webview initialization
-        setTimeout(tryReload, 50); // 50ms delay
+        if (tabReloadCounts[tabId] < 2) { // Check reload limit
+
+          // Reload the webview of the activated tab
+          const activeWebview = activeContainer.querySelector('webview');
+          if (activeWebview) {
+            const tryReload = () => {
+              if (typeof activeWebview.reload === 'function') {
+                console.log(`Reloading tab: ${tabId}`);
+                reloading = true; // Set the flag before reloading
+                activeWebview.reload();
+                tabReloadCounts[tabId]++; // Increment reload count
+
+                activeWebview.addEventListener('did-finish-load', () => {
+                  reloading = false; // Reset the flag after reload finishes
+                }, { once: true });
+
+                activeWebview.addEventListener('error', () => {
+                  reloading = false; // Reset the flag if there's an error
+                }, { once: true });
+              } else {
+                console.log(`Webview reload not ready: ${tabId}`);
+                activeWebview.addEventListener('dom-ready', () => {
+                  console.log(`Reloading tab (dom-ready): ${tabId}`);
+                  reloading = true; // Set the flag before reloading
+                  activeWebview.reload();
+                  tabReloadCounts[tabId]++; // Increment reload count
+
+                  activeWebview.addEventListener('did-finish-load', () => {
+                    reloading = false; // Reset the flag after reload finishes
+                  }, { once: true });
+
+                  activeWebview.addEventListener('error', () => {
+                    reloading = false; // Reset the flag if there's an error
+                  }, { once: true });
+                }, { once: true });
+              }
+            };
+            setTimeout(tryReload, 50);
+          }
+        } else {
+          console.log(`Reload limit reached for tab: ${tabId}`);
+        }
+      } else {
+        console.log("Profile tab clicked - No reload triggered.");
       }
-    });
+    };
+    button.addEventListener('click', button.clickHandler); // Attach the click handler
   });
 }
 
@@ -50,20 +99,20 @@ updateTabLists();
 function reloadAllWebviews() {
   const webviews = document.querySelectorAll('webview');
   webviews.forEach(webview => {
-      const tabId = webview.dataset.tab;
-      const tryReload = () => {
-          if (typeof webview.reload === 'function') {
-              console.log(`Initial Reloading tab: ${tabId}`);
-              webview.reload();
-          } else {
-              console.log(`Initial Webview reload not ready: ${tabId}`);
-              webview.addEventListener('dom-ready', () => {
-                  console.log(`Initial Reloading tab (dom-ready): ${tabId}`);
-                  webview.reload();
-              }, { once: true });
-          }
-      };
-      setTimeout(tryReload, 50);
+    const tabId = webview.dataset.tab;
+    const tryReload = () => {
+      if (typeof webview.reload === 'function') {
+        console.log(`Initial Reloading tab: ${tabId}`);
+        webview.reload();
+      } else {
+        console.log(`Initial Webview reload not ready: ${tabId}`);
+        webview.addEventListener('dom-ready', () => {
+          console.log(`Initial Reloading tab (dom-ready): ${tabId}`);
+          webview.reload();
+        }, { once: true });
+      }
+    };
+    setTimeout(tryReload, 50);
   });
 }
 
@@ -156,7 +205,9 @@ function createNewTab(url, tabId = `tab-${Date.now()}`, name = 'New Tab') {
   });
 
   // Add event listener to the new tab button for renaming
-  tabButton.addEventListener('dblclick', () => {
+  tabButton.addEventListener('dblclick', (event) => {
+    event.stopPropagation(); // Prevent the click event from firing
+
     const dialog = document.getElementById('rename-dialog');
     const input = document.getElementById('rename-input');
     const confirmButton = document.getElementById('rename-confirm');
@@ -252,5 +303,20 @@ if (window.api) {
     return (event, url) => {
       createNewTab(url);
     }
+  });
+}
+
+// Listen for the "show-shortcuts-dialog" message from the main process
+if (window.api) {
+  window.api.handle('show-shortcuts-dialog', () => {
+      return () => {
+          const dialog = document.getElementById('shortcuts-dialog');
+          dialog.style.display = 'block';
+
+          const closeButton = document.getElementById('close-shortcuts');
+          closeButton.addEventListener('click', () => {
+              dialog.style.display = 'none';
+          });
+      };
   });
 }

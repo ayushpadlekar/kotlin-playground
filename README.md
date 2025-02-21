@@ -4,13 +4,13 @@
 
 # Kotlin Playground - Desktop App
 
-This is a desktop app built with **Electron**, which can be used to practice coding in Kotlin Language. The app is best suited for Android developers.
+#### This is a desktop app built with **Electron**, which can be used to practice coding in **Kotlin** Language. The app is best suited for Android developers.
 
-The app uses Kotlin Compiler Playground from SoloLearn (www.sololearn.com/en/compiler-playground/kotlin). 
+#### The app uses Kotlin Compiler Playground from SoloLearn (www.sololearn.com/en/compiler-playground/kotlin). 
 
-It gives a convenient way to test and run Kotlin codes without needing to open a web browser or use any heavy IDE for practising code.
+#### It gives a convenient way to test and run Kotlin codes without needing to open a web browser or use any heavy IDE for practising code.
 
-<p><b><h3> • Download Exe file ⬇️</h3></b></p> </br>
+<p><b><h3> • Download Exe file ⬇️</h3></b></p>
 https://github.com/ayushpadlekar/kotlin-playground/releases/tag/v1.0.0
 
 </br> </br>
@@ -66,7 +66,7 @@ https://github.com/ayushpadlekar/kotlin-playground/releases/tag/v1.0.0
 
 Key files and their roles in the application :
 
-*   **`main.js` (Main Process) :** This is the entry point of the Electron app. It's responsible for -
+*   **`main.js`** *(Main Process) :* This is the entry point of the Electron app. It's responsible for -
     *   Creating and managing the application window.
     *   Handling the application lifecycle (launching, quitting, etc.).
     *   Managing webviews and their events.
@@ -74,25 +74,25 @@ Key files and their roles in the application :
     *   Registering global shortcuts.
     *   Communicating with the renderer process via IPC.
 
-*   **`index.html` (UI) :** This file defines the design of the application. It includes -
+*   **`index.html`** *(UI) :* This file defines the design of the application. It includes -
     *   Webview of sololearn's website.
     *   The structure of the tab container.
     *   The definitions of the tab buttons and webview containers.
-    *   The inclusion of the `renderer.js` script.
+    *   The inclusion of the renderer.js script.
     *   Dialog definition for renaming tabs.
 
-*   **`renderer.js` (Renderer Process - Logic) :** This script runs in the renderer process (the browser window) and handles the application logic.  It's responsible for -
+*   **`renderer.js`** *(Renderer Process Logic) :* This script runs in the renderer process (the browser window) and handles the application logic.  It's responsible for -
     *   Managing tab switching and webview visibility.
     *   Reloading webviews.
-    *   Saving and restoring tab state using `localStorage`.
+    *   Saving and restoring tab state using localStorage.
     *   Creating new tabs dynamically.
     *   Handling tab renaming and deletion.
     *   Handling navigation commands (back/forward).
     *   Communicating with the main process via IPC.
     *   Adding event listeners to the tabs and webviews.
 
-*   **`preload.js` (Preload Script) :**
-    * This script runs before the renderer and acts as a bridge between the renderer and the main process. It controls which APIs the renderer process can access. It exposes a limited set of APIs to the renderer process using `contextBridge`, enabling secure communication with the main process. It defines the `window.api` object used by the `renderer.js` file.
+*   **`preload.js`** *(Preload Script) :*
+    * This script runs before the renderer and acts as a bridge between the renderer and the main process. It controls which APIs the renderer process can access. It exposes a limited set of APIs to the renderer process using ***contextBridge***, enabling secure communication with the main process. It defines the ***window.api*** object used by the renderer.js file.
 
 </br>
 
