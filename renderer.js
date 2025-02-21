@@ -169,7 +169,7 @@ function createNewTab(url, tabId = `tab-${Date.now()}`, name = 'New Tab') {
   tabButton.textContent = name;
 
   const deleteButton = document.createElement('button');
-  deleteButton.textContent = 'x';
+  deleteButton.textContent = 'X';
   deleteButton.classList.add('delete-button');
 
   const webviewContainer = document.createElement('div');
