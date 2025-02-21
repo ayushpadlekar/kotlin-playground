@@ -39,7 +39,7 @@ function updateTabLists() {
       // Check if it's the Profile tab before reloading
       if (tabId !== 'profile') { // Or if (button.dataset.tab !== 'profile')
 
-        if (tabReloadCounts[tabId] < 2) { // Check reload limit
+        if (tabReloadCounts[tabId] < 1) { // Check reload limit
 
           // Reload the webview of the activated tab
           const activeWebview = activeContainer.querySelector('webview');
@@ -212,9 +212,10 @@ function createNewTab(url, tabId = `tab-${Date.now()}`, name = 'New Tab') {
     const input = document.getElementById('rename-input');
     const confirmButton = document.getElementById('rename-confirm');
     const cancelButton = document.getElementById('rename-cancel');
+    const overlay = document.getElementById('overlay');
 
     // Extract tab name without delete button text
-    const tabName = tabButton.textContent.replace('x', '').trim();
+    const tabName = tabButton.textContent.replace('X', '').trim();
     input.value = tabName; // Set initial input value
 
     // Calculate dialog position
@@ -222,6 +223,8 @@ function createNewTab(url, tabId = `tab-${Date.now()}`, name = 'New Tab') {
     dialog.style.left = `${rect.left}px`;
     dialog.style.top = `${rect.bottom}px`;
 
+    // Show the dialog
+    overlay.style.display = 'block';
     dialog.style.display = 'block';
 
     // Focus and select the input text
@@ -240,12 +243,14 @@ function createNewTab(url, tabId = `tab-${Date.now()}`, name = 'New Tab') {
 
     cancelButton.onclick = () => {
       dialog.style.display = 'none';
+      overlay.style.display = 'none';
     };
 
     // Confirm on Enter key press
     input.addEventListener('keydown', (event) => {
       if (event.key === 'Enter') {
         confirmButton.click();
+        overlay.style.display = 'none';
       }
     });
 
@@ -253,8 +258,24 @@ function createNewTab(url, tabId = `tab-${Date.now()}`, name = 'New Tab') {
     input.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') {
         cancelButton.click();
+        overlay.style.display = 'none';
       }
     });
+
+    // Cancel on Esc key press when dialog is active
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && dialog.style.display === 'block') {
+        cancelButton.click();
+        overlay.style.display = 'none';
+      }
+    });
+
+    // Close dialog after clicking outside of it
+    overlay.addEventListener('click', () => {
+      cancelButton.click();
+      overlay.style.display = 'none';
+    });
+
   });
 
   // Add event listener to the delete button
