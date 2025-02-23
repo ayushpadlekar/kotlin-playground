@@ -239,6 +239,7 @@ function createNewTab(url, tabId = `tab-${Date.now()}`, name = 'New Tab') {
         saveTabState(tabId, url, newName); // Update localstorage
       }
       dialog.style.display = 'none';
+      overlay.style.display = 'none';
     };
 
     cancelButton.onclick = () => {
