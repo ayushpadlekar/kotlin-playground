@@ -4,30 +4,27 @@
 
 # Kotlin Playground - Desktop App
 
-#### This is a desktop app built with **Electron**, which can be used to practice coding in **Kotlin** Language. The app is best suited for Android developers.
+This is a desktop app built with **Electron**, which can be used to practice coding in **Kotlin** Language. The app is best suited for Android developers.
 
-#### The app uses Kotlin Compiler Playground from SoloLearn (www.sololearn.com/en/compiler-playground/kotlin). 
+The app uses Kotlin Compiler Playground from SoloLearn (www.sololearn.com/en/compiler-playground/kotlin). 
 
-#### It gives a convenient way to test and run Kotlin codes without needing to open a web browser or use any heavy IDE for practising code.
+It gives a convenient way to test and run Kotlin codes without needing to open a web browser or use any heavy IDE for practising code.
 
-<p><b><h3> • Download Exe file ⬇️</h3></b></p>
-https://github.com/ayushpadlekar/kotlin-playground/releases/tag/v2.0.0
+
+#### • Download Exe file - https://github.com/ayushpadlekar/kotlin-playground/releases/tag/v2.0.0 ⬇️
 
 </br> </br>
 
 ## Screenshots 📸
 
 * ### Main Screen (Empty Compiler Tab selected by default)
-
-![Main Screen (Compiler Tab)](<images/Main Screen.jpeg>)
+<img src="images/Main Screen.jpeg" alt="Main Screen (Compiler Tab)" height="400">
 
 * ### Profile Tab (To open saved kotlin programs)
-
-![Profile Tab](<images/Profile Tab.jpeg>)
+<img src="images/Main Screen.jpeg" alt="Profile Tab" height="400">
 
 * ### Other features like Add, Rename or Delete tabs
-
-![All other features](<images/All other features.jpeg>)
+<img src="images/All other features.jpeg" alt="All other features" height="600">
 
 </br>
 
