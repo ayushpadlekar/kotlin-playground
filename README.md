@@ -11,7 +11,7 @@
 #### It gives a convenient way to test and run Kotlin codes without needing to open a web browser or use any heavy IDE for practising code.
 
 <p><b><h3> • Download Exe file ⬇️</h3></b></p>
-https://github.com/ayushpadlekar/kotlin-playground/releases/tag/v1.0.0
+https://github.com/ayushpadlekar/kotlin-playground/releases/tag/v2.0.0
 
 </br> </br>
 
