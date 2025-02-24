@@ -11,20 +11,20 @@ The app uses Kotlin Compiler Playground from SoloLearn (www.sololearn.com/en/com
 It gives a convenient way to test and run Kotlin codes without needing to open a web browser or use any heavy IDE for practising code.
 
 
-#### • Download Exe file - https://github.com/ayushpadlekar/kotlin-playground/releases/tag/v2.0.0 ⬇️
+#### • Download Exe file - https://github.com/ayushpadlekar/kotlin-playground/releases/tag/v2.0.0 ↙️
 
-</br> </br>
+</br>
 
 ## Screenshots 📸
 
-* ### Main Screen (Empty Compiler Tab selected by default)
-<img src="images/Main Screen.jpeg" alt="Main Screen (Compiler Tab)" height="400">
+* ### Main Screen - Empty Compiler Tab (selected by default)
+<img src="images/Compiler Tab.png" alt="Compiler Tab (Default Screen)" width="700">
 
-* ### Profile Tab (To open saved kotlin programs)
-<img src="images/Main Screen.jpeg" alt="Profile Tab" height="400">
+* ### Profile Tab - To open saved kotlin programs
+<img src="images/Profile Tab.png" alt="Profile Tab" width="700">
 
 * ### Other features like Add, Rename or Delete tabs
-<img src="images/All other features.jpeg" alt="All other features" height="600">
+<img src="images/All other features.jpeg" alt="All other features" width="700">
 
 </br>
 
